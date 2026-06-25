@@ -479,16 +479,6 @@ section { position: relative; }
     justify-content: center;
 }
 
-.logo-chip {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 220px;
-    height: 110px;
-    padding: 15px 20px;
-    flex-shrink: 0;    
-}
-
 .logo-chip img {
     max-width: 180px;
     max-height: 90px;
@@ -510,26 +500,37 @@ section { position: relative; }
     display:flex;
     align-items:center;
     justify-content:center;
-    min-width:240;
-    height:140px;
-    padding:15px 25px;
+    min-width:220px;
+    height:120px;
+    transition:all .3s ease;
+}
+
+.logo-chip:hover{
     background:#fff;
-    border-right:1px solid rgba(0,0,0,.08);
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(22,50,79,.12);
 }
 
-.logo-chip img{
-    max-width:180px;
-    max-height:90px;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    filter:grayscale(100%);
-    transition:.3s;
+.logo-chip img {
+    max-width: 200px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    /* Show full color by default */
+    filter: none;
+    opacity: 1;
+
+    transition: transform .35s ease,
+                filter .35s ease,
+                opacity .35s ease;
+}
+.logo-chip:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
 }
 
-.logo-chip img:hover{
-    filter:none;
-    transform:scale(1.05);
 }.logo-chip strong {
   font-family: var(--font-display);
   font-weight: 800;
@@ -558,6 +559,15 @@ section { position: relative; }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
 .section-foot-link { display: flex; justify-content: flex-end; margin-bottom: -18px; font-size: 0.9rem; font-weight: 600; color: var(--navy-900); }
 .section-foot-link a:hover { color: var(--teal-500); }
+
+.detail-section{
+    padding-bottom:24px;
+}
+
+.cta-section{
+    padding-top:24px;
+    padding-bottom:64px;
+}
 
 /* ---------- Services grid ---------- */
 .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
@@ -942,8 +952,8 @@ section { position: relative; }
 .pillar-card li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--teal-500); position: absolute; left: 0; top: 7px; }
 
 /* ---------- Service detail page ---------- */
-.detail-flex { display: grid; grid-template-columns: 1.3fr 0.95fr; gap: 50px; align-items: start; }
-.detail-block { margin-bottom: 34px; }
+.detail-flex { display: grid; grid-template-columns: 1.3fr 0.95fr; gap: 32px; align-items: start; }
+.detail-block { margin-bottom: 20px; }
 .detail-block h2 { font-size: 1.4rem; margin-bottom: 14px; }
 .detail-block p { color: var(--slate); font-size: 0.98rem; margin-bottom: 12px; }
 .detail-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
@@ -1056,7 +1066,7 @@ section { position: relative; }
   .hero-stat { flex: 0 0 48%; border-right: none; padding-right: 0; margin-right: 0; margin-bottom: 16px; }
   .svc-grid, .svc-grid3, .case-grid, .lead-grid, .industry-grid, .blog-grid, .pillar-grid, .why-grid, .value-grid, .process-row, .testi-grid, .form-grid, .about-stats { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
-  .section { padding: 48px 0; }
+  .section { padding: 64px 0; }
   .section-head { margin-bottom: 32px; }
   .cta-banner { padding: 28px 22px; flex-direction: column; align-items: flex-start; }
   .cta-actions { width: 100%; }
@@ -1220,13 +1230,69 @@ section { position: relative; }
 /* ═══════════════════════════════════════
    CYBERSECURITY PAGE — VAPT Roadmap
 ═══════════════════════════════════════ */
-.vapt-roadmap { display: flex; align-items: flex-start; gap: 0; margin-top: 40px; }
+
 .vapt-step { flex: 1; text-align: center; padding: 32px 24px; background: var(--white); border: 1px solid var(--line); border-radius: 16px; }
 .vapt-arrow { display: flex; align-items: center; padding: 0 8px; flex-shrink: 0; padding-top: 60px; }
 .vapt-icon { display: flex; justify-content: center; margin-bottom: 12px; }
 .vapt-step-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: rgba(232,119,34,0.15); line-height: 1; margin-bottom: 8px; }
 .vapt-step h4 { font-size: 1.05rem; font-weight: 700; font-family: var(--font-display); margin-bottom: 10px; color: var(--navy-900); }
 .vapt-step p { font-size: 0.85rem; color: var(--slate); line-height: 1.65; }
+
+.vapt-roadmap{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:20px;
+    margin-top:70px;
+}
+
+.vapt-roadmap::before{
+    content:"";
+    position:absolute;
+    top:48px;
+    left:8%;
+    right:8%;
+    height:3px;
+    background:#d6dee8;
+    z-index:0;
+}
+
+.phase{
+    position:relative;
+    text-align:center;
+    z-index:1;
+}
+
+.phase-circle{
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:50%;
+    background:#fff;
+    border:4px solid #E87722;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:700;
+    color:#16324F;
+    transition:.35s;
+}
+
+.phase:hover .phase-circle{
+    background:#E87722;
+    color:#fff;
+    transform:scale(1.08);
+}
+
+.phase h4{
+    margin-top:22px;
+}
+
+.phase p{
+    font-size:.9rem;
+    color:#666;
+}
 
 @media (max-width: 720px) {
   .cyber-svc-grid { grid-template-columns: 1fr 1fr; }
